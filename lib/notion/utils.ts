@@ -7,7 +7,7 @@ import {
   type NotionRichText,
   type NotionSelectOption,
   NotionSelectColor,
-} from "./type";
+} from "@/types/notion";
 
 /**
  * type guard：过滤出完整的 Page 对象

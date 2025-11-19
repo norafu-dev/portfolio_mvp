@@ -46,6 +46,7 @@ const getPageProperties = async (
   dataSourceId: string
 ): Promise<NotionPageMeta[]> => {
   "use cache";
+  console.log("getPageProperties", new Date().toISOString());
   const dataSource = await retrieveDataSource(dataSourceId);
   if (!dataSource) {
     return [];
@@ -53,6 +54,7 @@ const getPageProperties = async (
   return dataSource.results.filter(isFullPageObject).map((page) => {
     const titleProp = page.properties["Title"];
     const slugProp = page.properties["Slug"];
+    const categoryProp = page.properties["Category"];
     const tagsProp = page.properties["Tags"];
     const publishedAtProp = page.properties["PublishedAt"];
     const editedAtProp = page.properties["EditedAt"];
@@ -68,6 +70,10 @@ const getPageProperties = async (
           ? getPlainText(slugProp.rich_text) || null
           : null,
       coverUrl: resolveCoverUrl(page),
+      category:
+        categoryProp?.type === "select"
+          ? categoryProp.select?.name ?? null
+          : null,
       tags:
         tagsProp?.type === "multi_select"
           ? getMultiSelectNames(toSelectOptions(tagsProp.multi_select))

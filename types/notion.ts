@@ -5,6 +5,7 @@ export type NotionPageMeta = {
   title: string;
   slug: string | null;
   coverUrl: string | null;
+  category: string | null;
   tags: string[];
   publishedAt: string | null;
   editedAt: string | null;

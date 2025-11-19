@@ -1,18 +1,18 @@
 import { Suspense } from "react";
-import type { Post } from "@/lib/generated/prisma/client";
+import type { NotionPageMeta } from "@/types/notion";
 import Link from "next/link";
 
-const PostList = ({ posts }: { posts: Post[] }) => {
+const PostList = ({ posts }: { posts: NotionPageMeta[] }) => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <ul>
         {posts.map((post) => {
-          const { id, slug, title, publishedAt, editedAt } = post;
+          const { notionPageId, slug, title, publishedAt, editedAt } = post;
           return (
-            <li key={id}>
+            <li key={notionPageId}>
               <Link href={`/blog/${slug}`}>{title}</Link>
-              <p>{publishedAt?.toISOString()}</p>
-              <div>{editedAt?.toISOString()}</div>
+              <p>{publishedAt}</p>
+              <div>{editedAt}</div>
             </li>
           );
         })}
