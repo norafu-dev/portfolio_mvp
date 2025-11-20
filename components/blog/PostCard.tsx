@@ -3,7 +3,7 @@ import Image from "next/image";
 import type { NotionPageMeta } from "@/types/notion";
 
 const PostCard = ({ post }: { post: NotionPageMeta }) => {
-  const { slug, title, coverUrl, tags, publishedAt, category } = post;
+  const { slug, title, coverUrl, tags, publishedAt } = post;
 
   // 简单的日期格式化函数：YYYY-MM-DD
   const formatDate = (dateString: string | null) => {
@@ -42,7 +42,7 @@ const PostCard = ({ post }: { post: NotionPageMeta }) => {
                   key={tag}
                   className="pr-2 py-1 rounded bg-white/10 text-neutral-600 border border-white/5"
                 >
-                  {tag} {category}
+                  {tag}
                 </span>
               ))}
             </div>
