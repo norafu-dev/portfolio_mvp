@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { NotionPageMeta } from "@/types/notion";
+import BlurImage from "../BlurImage";
 
 const PostCard = ({ post }: { post: NotionPageMeta }) => {
   const { slug, title, coverUrl, tags, publishedAt } = post;
@@ -16,20 +16,7 @@ const PostCard = ({ post }: { post: NotionPageMeta }) => {
       <article className="flex flex-col sm:flex-row gap-6 p-4 -mx-4 rounded-2xl transition-colors duration-300 hover:bg-white/5">
         {/* 左侧封面图区域 */}
         <div className="relative w-full sm:w-48 aspect-[16/9] shrink-0 overflow-hidden rounded-xl bg-neutral-800/50 border border-white/10">
-          {coverUrl ? (
-            <Image
-              src={coverUrl}
-              alt={title}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 640px) 100vw, 200px"
-            />
-          ) : (
-            // 没有封面图时的占位符
-            <div className="absolute inset-0 flex items-center justify-center text-neutral-600">
-              <span className="text-4xl opacity-20">#</span>
-            </div>
-          )}
+          <BlurImage src={coverUrl ?? undefined} alt={title} />
         </div>
 
         {/* 右侧内容区域 */}
