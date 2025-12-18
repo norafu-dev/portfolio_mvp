@@ -3,7 +3,7 @@ import type { NotionPageMeta } from "@/types/notion";
 import BlurImage from "../BlurImage";
 
 const PostCard = ({ post }: { post: NotionPageMeta }) => {
-  const { slug, title, coverUrl, tags, publishedAt } = post;
+  const { slug, title, coverUrl, tags, publishedAt, blurDataURL } = post;
 
   // 简单的日期格式化函数：YYYY-MM-DD
   const formatDate = (dateString: string | null) => {
@@ -16,7 +16,12 @@ const PostCard = ({ post }: { post: NotionPageMeta }) => {
       <article className="flex flex-col sm:flex-row gap-6 p-4 -mx-4 rounded-2xl transition-colors duration-300 hover:bg-white/5">
         {/* 左侧封面图区域 */}
         <div className="relative w-full sm:w-48 aspect-[16/9] shrink-0 overflow-hidden rounded-xl bg-neutral-800/50 border border-white/10">
-          <BlurImage src={coverUrl ?? undefined} alt={title} />
+          <BlurImage
+            src={coverUrl ?? undefined}
+            alt={title}
+            blurDataURL={blurDataURL}
+            imageClassName="group-hover:scale-105 transition-transform duration-500 ease-in-out"
+          />
         </div>
 
         {/* 右侧内容区域 */}
@@ -46,7 +51,7 @@ const PostCard = ({ post }: { post: NotionPageMeta }) => {
           </div>
 
           {/* 标题 */}
-          <h2 className="text-lg sm:text-lg text-neutral-700 leading-tight group-hover:text-blue-400 transition-colors">
+          <h2 className="text-neutral-700 group-hover:text-blue-400 transition-colors tracking-wide">
             {title}
           </h2>
         </div>

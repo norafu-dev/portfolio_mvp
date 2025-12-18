@@ -4,13 +4,11 @@ import PostCard from "./PostCard";
 
 const PostList = ({ posts }: { posts: NotionPageMeta[] }) => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ul>
-        {posts.map((post) => {
-          return <PostCard key={post.notionPageId} post={post} />;
-        })}
-      </ul>
-    </Suspense>
+    <ul>
+      {posts.map((post) => {
+        return <PostCard key={post.notionPageId} post={post} />;
+      })}
+    </ul>
   );
 };
 
