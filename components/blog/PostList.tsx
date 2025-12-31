@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import type { NotionPageMeta } from "@/types/notion";
 import PostCard from "./PostCard";
 

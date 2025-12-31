@@ -4,7 +4,9 @@ const getImage = async (
   url: string
 ): Promise<{ base64: string; aspectRatio: number } | null> => {
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      next: { revalidate: 60 * 60 * 12 },
+    });
     if (!response.ok) {
       throw new Error("Failed to fetch image");
     }

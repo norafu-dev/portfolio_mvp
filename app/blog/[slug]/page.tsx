@@ -8,17 +8,22 @@ const BlogPostPage = async ({
   params: Promise<{ slug: string }>;
 }) => {
   const { slug } = await params;
+  
+  return (
+    <>
+      <Suspense fallback={<div>Loading...</div>}>
+        <BlogPostContent slug={slug} />
+      </Suspense>
+    </>
+  );
+};
+
+const BlogPostContent = async ({ slug }: { slug: string }) => {
   const pageId = await getPageIdBySlug(slug);
   if (!pageId) {
     return notFound();
   }
-  return (
-    <>
-      <Suspense fallback={<div>Loading...</div>}>
-        <div>BlogPostPage: {pageId} </div>
-      </Suspense>
-    </>
-  );
+  return <div>BlogPostPage: {pageId} </div>;
 };
 
 export default BlogPostPage;

@@ -46,8 +46,6 @@ const retrieveDataSource = async (
 const getPageProperties = async (
   dataSourceId: string
 ): Promise<NotionPageMeta[]> => {
-  "use cache";
-  console.log("getPageProperties", new Date().toISOString());
   const dataSource = await retrieveDataSource(dataSourceId);
   if (!dataSource) {
     return [];

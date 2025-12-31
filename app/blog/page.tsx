@@ -3,19 +3,24 @@ import { getPosts } from "@/lib/notion/data";
 import PostList from "@/components/blog/PostList";
 import PostListSkeleton from "@/components/blog/PostListSkeleton";
 
-const BlogPage = () => {
+export async function generateStaticParams() {
+  const posts = await getPosts();
+  return posts
+    .filter((post) => post.slug)
+    .map((post) => ({
+      slug: post.slug!,
+    }));
+}
+
+const BlogPage = async () => {
+  const posts = await getPosts();
   return (
     <section className="mt-16">
       <Suspense fallback={<PostListSkeleton />}>
-        <PostListWrapper />
+        <PostList posts={posts} />
       </Suspense>
     </section>
   );
-};
-
-const PostListWrapper = async () => {
-  const posts = await getPosts();
-  return <PostList posts={posts} />;
 };
 
 export default BlogPage;
