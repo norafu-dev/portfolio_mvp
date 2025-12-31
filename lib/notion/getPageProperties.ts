@@ -16,6 +16,10 @@ import {
 const retrieveDataSource = async (
   data_source_id: string
 ): Promise<QueryDataSourceResponse | null> => {
+  console.log(
+    "⚡️ [REAL FETCH] Calling Notion API...",
+    new Date().toLocaleTimeString()
+  );
   // 查询数据源
   try {
     const response = await notion.dataSources.query({
@@ -98,7 +102,6 @@ const getPageProperties = async (
             : null,
       };
     });
-
   return Promise.all(tasks);
 };
 

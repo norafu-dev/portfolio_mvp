@@ -7,7 +7,6 @@ export const getPosts = async () => {
   cacheLife("blog");
   cacheTag("notion-pages");
   const posts = await getPageProperties(siteConfig.notion.dataSourceId);
-  console.log("fetchNotionPages", new Date().toISOString());
   return posts;
 };
 
@@ -24,4 +23,13 @@ export const getAllCategories = async () => {
 export const getPageIdBySlug = async (slug: string) => {
   const posts = await getPosts();
   return posts.find((p) => p.slug === slug)?.notionPageId ?? null;
+};
+
+export const getPostBySlug = async (slug: string) => {
+  const posts = await getPosts();
+  const post = posts.find((p) => p.slug === slug);
+  if (!post) {
+    return null;
+  }
+  return post;
 };

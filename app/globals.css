@@ -23,6 +23,6 @@
     @apply bg-background text-foreground font-sans antialiased mx-4;
   }
   main {
-    @apply max-w-3xl mx-auto;
+    @apply max-w-4xl mx-auto;
   }
 }

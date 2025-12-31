@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   cacheLife: {
     blog: {
-      stale: 59, // 不起作用，因为 generateStaticParams 会重新生成静态参数
+      stale: 60 * 60, // 不起作用，因为 generateStaticParams 会重新生成静态参数
       revalidate: 60 * 60 * 12, // 12 hours
     },
   },
