@@ -2,6 +2,7 @@ import { getPostBySlug, getPosts } from "@/lib/notion/data";
 import PostHead from "@/components/blog/post/PostHead";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import PostViewsWrapper from "@/components/blog/post/PostViewsWrapper";
 
 export async function generateStaticParams() {
   const posts = await getPosts();
@@ -19,23 +20,27 @@ const BlogPostPage = async ({
 }) => {
   const { slug } = await params;
 
-  return (
-    <>
-      <Suspense fallback={<div>Loading...</div>}>
-        <BlogPostContent slug={slug} />
-      </Suspense>
-    </>
-  );
-};
-
-const BlogPostContent = async ({ slug }: { slug: string }) => {
+  // 1. 获取静态文章内容（快速）
   const post = await getPostBySlug(slug);
+
   if (!post) {
     return notFound();
   }
+
   return (
     <article>
-      <PostHead post={post} />
+      <PostHead
+        post={post}
+        // 2. 将动态的浏览量组件用 Suspense 包裹后传进去
+        // 这样 PostHead 会立即渲染，views 位置会先显示 fallback 内容
+        views={
+          <Suspense
+            fallback={<span className="text-sm text-gray-400">Loading...</span>}
+          >
+            <PostViewsWrapper slug={slug} />
+          </Suspense>
+        }
+      />
     </article>
   );
 };

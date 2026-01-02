@@ -19,7 +19,13 @@ const ClockIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const PostHead = ({ post }: { post: NotionPageMeta }) => {
+const PostHead = ({
+  post,
+  views,
+}: {
+  post: NotionPageMeta;
+  views: React.ReactNode;
+}) => {
   const {
     title,
     publishedAt,
@@ -95,11 +101,11 @@ const PostHead = ({ post }: { post: NotionPageMeta }) => {
             </MetaRow>
 
             {/* Views */}
-            {editedAt && editedAt !== publishedAt && (
-              <MetaRow label="Views" isLast>
-                {21}
-              </MetaRow>
-            )}
+            <MetaRow label="Views" isLast>
+              <div className="text-gray-900 dark:text-gray-100 font-medium">
+                {views ?? "-"}
+              </div>
+            </MetaRow>
           </div>
         </div>
       </div>
