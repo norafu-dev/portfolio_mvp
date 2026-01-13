@@ -1,0 +1,154 @@
+/* 确保代码可以被选中 */
+pre[class*="language-"],
+code[class*="language-"] {
+  user-select: text !important; /* 强制允许文本选择 */
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+}
+
+/* 基础代码样式，适用于所有代码元素 */
+code[class*="language-"],
+pre[class*="language-"] {
+  /* 设置等宽字体系列，确保代码格式正确对齐 */
+  font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono",
+    "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono",
+    "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L",
+    "Courier New", Courier, monospace;
+  font-size: 14px; /* 基础字体大小 */
+  line-height: 1.75; /* 行高，提高代码可读性 */
+  direction: ltr; /* 文本方向：从左到右 */
+  text-align: left; /* 文本左对齐 */
+  white-space: pre; /* 保留空白符和换行符 */
+  word-spacing: normal; /* 正常词间距 */
+  word-break: normal; /* 正常断词规则 */
+
+  /* 设置制表符宽度为4个空格 */
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  /* 禁用自动连字符 */
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+
+  background: #faf8f5;
+  color: #4f5794;
+}
+
+/* 选中文本时的样式（其他浏览器） */
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
+  text-shadow: none;
+  background: #d7e3fc; /* 浅蓝色背景，形成对比 */
+}
+
+/* 代码块样式 */
+pre[class*="language-"] {
+  padding: 1em; /* 内边距 */
+  margin: 0.5em 0; /* 外边距（上下） */
+  overflow: auto; /* 超出部分显示滚动条 */
+}
+
+/* 行内代码样式 */
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em; /* 较小的内边距 */
+  border-radius: 0.3em; /* 圆角边框 */
+}
+
+/* 注释、导言、文档类型声明和CDATA样式 */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #a1a1a1; /* 已经是灰色 */
+}
+
+/* 标点符号样式 */
+.token.punctuation {
+  color: #7f7e7e;
+}
+
+/* 命名空间样式 */
+.token.namespace {
+  opacity: 0.7;
+}
+
+/* 标签 */
+.token.tag {
+  color: #5686e4;
+}
+
+/* 运算符和数字样式 */
+.token.operator,
+.token.number {
+  color: #7f7e7e;
+}
+
+/* 属性和函数样式 */
+.token.property,
+.token.function {
+  color: #dd4a68; /* 红色，已经不是褐色 */
+}
+
+/* 标签ID、选择器和规则ID样式 */
+.token.tag-id,
+.token.selector,
+.token.atrule-id {
+  color: #333333; /* 深灰色，替代深褐色 */
+}
+
+/* JavaScript代码和属性名样式 */
+code.language-javascript,
+.token.attr-name {
+  color: #555555;
+}
+
+/* CSS代码、布尔值、字符串等样式 */
+code.language-css,
+code.language-scss,
+.token.boolean,
+.token.string,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.language-scss .token.string,
+.style .token.string,
+.token.attr-value,
+.token.control,
+.token.directive,
+.token.unit,
+.token.statement,
+.token.regex,
+.token.atrule {
+  color: #728fcb;
+}
+
+.token.keyword {
+  color: #4679c6;
+}
+
+/* 占位符和变量样式 */
+.token.placeholder,
+.token.variable {
+  color: #dd4a68;
+}
+
+/* 斜体样式 */
+.token.italic {
+  font-style: italic;
+}
+
+/* 行号插件样式覆盖 */
+.line-numbers.line-numbers .line-numbers-rows {
+  border-right-color: #ffffff;
+}
+
+/* 行号文本样式 */
+.line-numbers .line-numbers-rows > span:before {
+  color: #a5a2a2;
+}

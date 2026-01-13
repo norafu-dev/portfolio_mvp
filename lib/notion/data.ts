@@ -1,6 +1,7 @@
+import { cacheLife, cacheTag } from "next/cache";
 import getPageProperties from "@/lib/notion/getPageProperties";
 import siteConfig from "@/site.config";
-import { cacheLife, cacheTag } from "next/cache";
+import { notionX } from "@/lib/notion/notion";
 
 export const getPosts = async () => {
   "use cache";
@@ -32,4 +33,12 @@ export const getPostBySlug = async (slug: string) => {
     return null;
   }
   return post;
+};
+
+export const getPostRecordMap = async (pageId: string) => {
+  "use cache";
+  cacheLife("blog");
+  cacheTag("notion-pages");
+  const recordMap = await notionX.getPage(pageId);
+  return recordMap;
 };

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Serif_SC, Nunito_Sans } from "next/font/google";
 import "./globals.css";
+import "./notion.css";
 import Nav from "@/components/nav";
 
 const notoSerifSC = Noto_Serif_SC({

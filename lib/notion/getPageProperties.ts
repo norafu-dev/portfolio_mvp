@@ -1,4 +1,4 @@
-import notion from "@/lib/notion/notion";
+import { notion } from "@/lib/notion/notion";
 import getImage from "@/lib/getImage";
 
 import type { QueryDataSourceResponse } from "@notionhq/client/build/src/api-endpoints";

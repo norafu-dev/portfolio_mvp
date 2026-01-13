@@ -10,17 +10,17 @@ const nextConfig: NextConfig = {
   },
   images: {
     remotePatterns: [
+      { protocol: "https", hostname: "www.notion.so" },
+      { protocol: "https", hostname: "notion.so" },
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "s3.us-west-2.amazonaws.com" },
       {
         protocol: "https",
-        hostname: "**.notionusercontent.com",
+        hostname: "prod-files-secure.s3.us-west-2.amazonaws.com",
       },
       {
         protocol: "https",
-        hostname: "**.notion.so",
-      },
-      {
-        protocol: "https",
-        hostname: "**.unsplash.com",
+        hostname: "file.notion.so",
       },
     ],
   },

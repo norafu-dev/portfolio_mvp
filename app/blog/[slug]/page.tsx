@@ -3,6 +3,8 @@ import PostHead from "@/components/blog/post/PostHead";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import PostViewsWrapper from "@/components/blog/post/PostViewsWrapper";
+import { getPostRecordMap } from "@/lib/notion/data";
+import NotionRenderer from "@/components/blog/post/NotionRenderer";
 
 export async function generateStaticParams() {
   const posts = await getPosts();
@@ -27,6 +29,8 @@ const BlogPostPage = async ({
     return notFound();
   }
 
+  const recordMap = await getPostRecordMap(post.notionPageId);
+
   return (
     <article>
       <PostHead
@@ -41,6 +45,9 @@ const BlogPostPage = async ({
           </Suspense>
         }
       />
+      <Suspense fallback={<div>Loading...</div>}>
+        <NotionRenderer recordMap={recordMap} />
+      </Suspense>
     </article>
   );
 };
